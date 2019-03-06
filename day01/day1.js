@@ -57,28 +57,28 @@ class DayOne {
 
 
 		for (let val of values) {
-				data['val'] = val;
-				let x = data['x'];
-				let y = data['y'];
-				
-				this.step(data);
+			data['val'] = val;
+			let x = data['x'];
+			let y = data['y'];
+			
+			this.step(data);
 
-				while (x != data['x'] || y != data['y']) {
-					if (x != data['x']) {
-						x = x > data['x'] ? --x : ++x;
-					}
+			while (x != data['x'] || y != data['y']) {
+				if (x != data['x']) {
+					x = x > data['x'] ? --x : ++x;
+				}
 
-					if (y != data['y']) {
-						y = y > data['y'] ? --y : ++y;
-					}
+				if (y != data['y']) {
+					y = y > data['y'] ? --y : ++y;
+				}
 
-					let key = [x, y].join();
-					if (locations.has(key)) {
-						let repeat = locations.get(key);
-						return Math.abs(repeat['x']) + Math.abs(repeat['y']);
-					}
-					locations.set(key, {'x': x, 'y': y});
-				}				
+				let key = [x, y].join();
+				if (locations.has(key)) {
+					let repeat = locations.get(key);
+					return Math.abs(repeat['x']) + Math.abs(repeat['y']);
+				}
+				locations.set(key, {'x': x, 'y': y});
+			}				
 		};
 		
 	}
