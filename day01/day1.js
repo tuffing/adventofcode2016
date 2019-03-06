@@ -15,8 +15,9 @@ class DayOne {
 		else 
 			stepDetails['direction']--;
 
-		stepDetails['direction'] = stepDetails['direction'] < 0 ? stepDetails['direction'] + 4: stepDetails['direction']; //javascript mod operator ISNT mod, it's remainder and there's a difference
-		stepDetails['direction'] = stepDetails['direction'] % 4;
+		//javascript mod operator ISNT mod, it's remainder and there's a difference. Gonna have to be a little more verbose than in other languages.
+		//our magic number 4 stems from there being only 4 possible directions.
+		stepDetails['direction'] = stepDetails['direction'] < 0 ? stepDetails['direction'] + 4: stepDetails['direction'] % 4; 
 
 		stepDetails['val'] = Math.abs(stepDetails['val']);
 
