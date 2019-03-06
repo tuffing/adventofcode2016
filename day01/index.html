@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/1
+
+<ul>
+	<li>How many blocks away is Easter Bunny HQ?</li>
+	<li>How many blocks away is the first location you visit twice?</li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day1.js"></script>
+<script>
+QUnit.test("Day 1 Part 1", function( assert ) {
+	var d1 = new DayOne();
+	assert.equal(d1.PartASolution('R2, L3'), 5);
+	assert.equal(d1.PartASolution('R2, R2, R2'), 2);
+	assert.equal(d1.PartASolution('R5, L5, R5, R3'), 12);
+});
+
+QUnit.test("Day 1 Part 2", function( assert ) {
+	var d1 = new DayOne();
+	assert.equal(d1.PartBSolution('R8, R4, R4, R8'), 4);
+});
+
+var d1 = new DayOne();
+//console.log(d1.PartASolution('R2, R2, R2'));
+let input = 'R4, R3, L3, L2, L1, R1, L1, R2, R3, L5, L5, R4, L4, R2, R4, L3, R3, L3, R3, R4, R2, L1, R2, L3, L2, L1, R3, R5, L1, L4, R2, L4, R3, R1, R2, L5, R2, L189, R5, L5, R52, R3, L1, R4, R5, R1, R4, L1, L3, R2, L2, L3, R4, R3, L2, L5, R4, R5, L2, R2, L1, L3, R3, L4, R4, R5, L1, L1, R3, L5, L2, R76, R2, R2, L1, L3, R189, L3, L4, L1, L3, R5, R4, L1, R1, L1, L1, R2, L4, R2, L5, L5, L5, R2, L4, L5, R4, R4, R5, L5, R3, L1, L3, L1, L1, L3, L4, R5, L3, R5, R3, R3, L5, L5, R3, R4, L3, R3, R1, R3, R2, R2, L1, R1, L3, L3, L3, L1, R2, L1, R4, R4, L1, L1, R3, R3, R4, R1, L5, L2, R2, R3, R2, L3, R4, L5, R1, R4, R5, R4, L4, R1, L3, R1, R3, L2, L3, R1, L2, R3, L3, L1, L3, R4, L4, L5, R3, R5, R4, R1, L2, R3, R5, L5, L4, L1, L1';
+
+console.log('A:' + d1.PartASolution(input));
+console.log('B:' + d1.PartBSolution(input));
+
+
+</script>
+</body>
+</html>
