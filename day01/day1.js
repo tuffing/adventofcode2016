@@ -65,17 +65,11 @@ class DayOne {
 
 				while (x != data['x'] || y != data['y']) {
 					if (x != data['x']) {
-						if (x > data['x']) 
-							x--;
-						else
-							x++;
+						x = x > data['x'] ? --x : ++x;
 					}
 
 					if (y != data['y']) {
-						if (y > data['y']) 
-							y--;
-						else
-							y++;
+						y = y > data['y'] ? --y : ++y;
 					}
 
 					let key = [x, y].join();
