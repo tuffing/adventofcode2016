@@ -84,6 +84,3 @@ class DayOne {
 		
 	}
 }
-
-//let test = new DayOne("test");
-//test.test();

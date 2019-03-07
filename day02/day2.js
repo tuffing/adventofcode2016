@@ -76,6 +76,3 @@ class DayTwo {
 		return result;
 	}
 }
-
-//let test = new DayOne("test");
-//test.test();
