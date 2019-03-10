@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/4
+
+<ul>
+	<li>What is the sum of the sector IDs of the real rooms?</li>
+	<li>What is the sector ID of the room where North Pole objects are stored?</li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day4.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+<script>
+QUnit.test("Day 4 Part 1", function( assert ) {
+	var d4 = new DayFour();
+
+	assert.equal(d4.IsDecoy('aaaaa-bbb-z-y-x-123[abxyz]'), false);
+	assert.equal(d4.IsDecoy('a-b-c-d-e-f-g-h-987[abcde]'), false);
+	assert.equal(d4.IsDecoy('not-a-real-room-404[oarel]'), false);
+	assert.equal(d4.IsDecoy('totally-real-room-200[decoy]'), true);
+
+	assert.equal(d4.PartASolution('aaaaa-bbb-z-y-x-123[abxyz]\na-b-c-d-e-f-g-h-987[abcde]\nnot-a-real-room-404[oarel]\ntotally-real-room-200[decoy]'), 1514);
+});
+
+
+QUnit.test("Day 4 Part 2", function( assert ) {
+	var d4 = new DayFour();
+
+	assert.equal(d4.Decode('qzmt', 343), 'very');
+	assert.equal(d4.Decode('zixmtkozy', 343), 'encrypted');
+	assert.equal(d4.Decode('ivhz', 343), 'name');
+});
+
+var d4 = new DayFour();
+console.log(d4.PartASolution(solInput));
+console.log(d4.PartBSolution(solInput));
+
+
+</script>
+</body>
+</html>
