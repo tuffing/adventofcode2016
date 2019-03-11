@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/4
+
+<p>Broke the no 3rd party library rule on this one but i wasn't going to implement MD5!</p>
+
+<ul>
+	<li>Given the actual Door ID, what is the password?</li>
+	<li>Given the actual Door ID and this new method, what is the password? </li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="spark-md5.min.js"></script>
+<script type="text/javascript" src="day5.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+<script>
+QUnit.test("Day 5 Part 1 and 2", function( assert ) {
+	var d5 = new DayFive();
+	console.log('---TEST---');
+	assert.equal(d5.PartASolution('abc'), '18f47a30/05ace8e3');
+});
+
+
+var d5 = new DayFive();
+console.log('---SOLUTION---');
+console.log(d5.PartASolution('wtnhxymk'));
+
+
+</script>
+</body>
+</html>
