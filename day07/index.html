@@ -28,6 +28,14 @@ QUnit.test("Day 7 Part 1", function( assert ) {
 	assert.equal(d7.IsValidTLS('ioxxoj[asdfgh]zxcvbn'), true);
 });
 
+QUnit.test("Day 7 Part 2", function( assert ) {
+	var d7 = new DaySeven();
+	assert.equal(d7.IsValidSSL('aba[bab]xyz'), true);
+	assert.equal(d7.IsValidSSL('xyx[xyx]xyx'), false);
+	assert.equal(d7.IsValidSSL('aaa[kek]eke'), true);
+	assert.equal(d7.IsValidSSL('zazbz[bzb]cdb'), true);
+});
+
 var d7 = new DaySeven();
 console.log(d7.Solution(solInput));
 
