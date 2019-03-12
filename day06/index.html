@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/6
+
+<ul>
+	<li>The most common character in the first column is e; in the second, a; in the third, s, and so on. Combining these characters returns the error-corrected message, easter. Given the recording in your puzzle input, what is the error-corrected version of the message being sent?</li>
+	<li>In the above example, the least common character in the first column is a; in the second, d, and so on. Repeating this process for the remaining characters produces the original message, advent. Given the recording in your puzzle input and this new decoding methodology, what is the original message that Santa is trying to send?</li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day6.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+<script>
+QUnit.test("Day 6 Part 1", function( assert ) {
+	var d6 = new DaySix();
+	var test = 'eedadn\ndrvtee\neandsr\nraavrd\natevrs\ntsrnev\nsdttsa\nrasrtv\nnssdts\nntnada\nsvetve\ntesnvt\nvntsnd\nvrdear\ndvrsen\nenarar';
+	assert.equal(d6.Solution(test, 6, true), 'easter');
+	assert.equal(d6.Solution(test, 6, false), 'advent');
+});
+
+var d6 = new DaySix();
+console.log(d6.Solution(solInput, 8, true));
+console.log(d6.Solution(solInput, 8, false));
+
+
+</script>
+</body>
+</html>
