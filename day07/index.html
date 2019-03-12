@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/7
+
+<ul>
+	<li>-</li>
+	<li>-</li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day7.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+<script>
+QUnit.test("Day 7 Part 1", function( assert ) {
+	var d7 = new DaySeven();
+	assert.equal(d7.IsValidTLS('abba[mnop]qrst'), true);
+	assert.equal(d7.IsValidTLS('abcd[bddb]xyyx'), false);
+	assert.equal(d7.IsValidTLS('aaaa[qwer]tyui'), false);
+	assert.equal(d7.IsValidTLS('ioxxoj[asdfgh]zxcvbn'), true);
+});
+
+var d7 = new DaySeven();
+console.log(d7.Solution(solInput));
+
+</script>
+</body>
+</html>
