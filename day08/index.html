@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/8
+
+<ul>
+	<li>-</li>
+	<li>-</li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day8.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+<script>
+QUnit.test("Day 8 Part 1", function( assert ) {
+	var d8 = new DayEight(7,3);
+	d8.RunLine('rect 3x2');
+	assert.equal(d8.GetPrintOut(), '###....\n###....\n.......');
+	d8.RunLine('rotate column x=1 by 1');
+	assert.equal(d8.GetPrintOut(), '#.#....\n###....\n.#.....');
+	d8.RunLine('rotate row x=0 by 4');
+	assert.equal(d8.GetPrintOut(), '....#.#\n###....\n.#.....');
+	d8.RunLine('rotate column x=1 by 1');
+	assert.equal(d8.GetPrintOut(), '.#..#.#\n#.#....\n.#.....');
+	d8.RunLine('rotate column x=1 by 2');
+	assert.equal(d8.GetPrintOut(), '....#.#\n###....\n.#.....');
+});
+
+
+var d8 = new DayEight(50,6);
+console.log(d8.SolutionPartOne(solInput));
+console.log(d8.GetPrintOut());
+</script>
+</body>
+</html>
