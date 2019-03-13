@@ -31,7 +31,10 @@ var d6 = new DaySix();
 console.log(d6.Solution(solInput, 8, true));
 console.log(d6.Solution(solInput, 8, false));
 
-
+var re = /(.)(.)(?!\1\1)\2\1(?=\w*\])/g;
+//while ((array1 = re.exec('adncdhtushtvtfcbez[rvaycmplefdvbrchc]vtviiplkpfhsyhwzz[pdpnsseaizogzvtkcq]piorguaivfpummlo')) !== null) {
+	console.table('adncdhtabbaushtvtfcbez[rvaycmplefdvbrtrrchc]vtviiplkpfhsyzaazhwzz[pdpnsseaizogzvtkcq]piorguaivfpummlo'.match(re));
+//}
 </script>
 </body>
 </html>
