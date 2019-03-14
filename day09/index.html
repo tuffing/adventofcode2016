@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/9
+
+<ul>
+	<li>-</li>
+	<li>-</li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day9.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+<script>
+QUnit.test("Day 8 Part 1", function( assert ) {
+	var d9 = new DayNine();
+	assert.equal(d9.SolutionPartOne('A(1x5)BC'), 7);
+	assert.equal(d9.SolutionPartOne('(3x3)XYZ'), 9);
+	assert.equal(d9.SolutionPartOne('ADVENT'), 6);
+	assert.equal(d9.SolutionPartOne('A(2x2)BCD(2x2)EFG'), 11);
+	assert.equal(d9.SolutionPartOne('(6x1)(1x3)A'), 6);
+	assert.equal(d9.SolutionPartOne('X(8x2)(3x3)ABCY'), 18);
+});
+
+
+var d9 = new DayNine();
+console.log(d9.SolutionPartOne(solInput));
+//console.log(d8.GetPrintOut());
+</script>
+</body>
+</html>
