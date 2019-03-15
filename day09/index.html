@@ -9,8 +9,8 @@
 https://adventofcode.com/2016/day/9
 
 <ul>
-	<li>-</li>
-	<li>-</li>
+	<li>What is the decompressed length of the file (your puzzle input)? Don't count whitespace.</li>
+	<li>What is the decompressed length of the file using this improved format? (nested brackets)</li>
 </ul>
 
 
@@ -20,7 +20,7 @@ https://adventofcode.com/2016/day/9
 <script type="text/javascript" src="day9.js"></script>
 <script type="text/javascript" src="input.txt"></script>
 <script>
-QUnit.test("Day 8 Part 1", function( assert ) {
+QUnit.test("Day 9 Part 1", function( assert ) {
 	var d9 = new DayNine();
 	assert.equal(d9.SolutionPartOne('A(1x5)BC'), 7);
 	assert.equal(d9.SolutionPartOne('(3x3)XYZ'), 9);
@@ -30,10 +30,20 @@ QUnit.test("Day 8 Part 1", function( assert ) {
 	assert.equal(d9.SolutionPartOne('X(8x2)(3x3)ABCY'), 18);
 });
 
+QUnit.test("Day 9 Part 2", function( assert ) {
+	var d9 = new DayNine();
+	//var d9 = new DayNine();
+	assert.equal(d9.SolutionPartTwo('(3x3)XYZ'), 9);
+	assert.equal(d9.SolutionPartTwo('ADVENT'), 6);
+	assert.equal(d9.SolutionPartTwo('X(8x2)(3x3)ABCY'), 20);
+	assert.equal(d9.SolutionPartTwo('(27x12)(20x12)(13x14)(7x10)(1x12)A'), 241920);
+	assert.equal(d9.SolutionPartTwo('(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN'), 445);
+});
+
 
 var d9 = new DayNine();
 console.log(d9.SolutionPartOne(solInput));
-//console.log(d8.GetPrintOut());
+console.log(d9.SolutionPartTwo(solInput));
 </script>
 </body>
 </html>
