@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/11
+
+<ul>
+	<li></li>
+	<li></li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day11.js"></script>
+<script>
+QUnit.test("Day 11 Part 1 parts", function( assert ) {
+	//var d11 = new DayEleven();
+	//assert.equal(d11.SolutionPartOne('A(1x5)BC'), 7);
+	var rtf1 = new Rtf('test1');
+	var	chip1 = new Chip('test1');
+	assert.equal(rtf1.isCompatible(chip1), true);
+	assert.equal(chip1.isCompatible(rtf1), true);
+	assert.equal(chip1.toString(), 'test1M');
+	assert.equal(rtf1.toString(), 'test1G');
+
+	var rtf2 = new Rtf('test2');
+	var chip2 = new Chip('test2');
+	assert.equal(rtf1.isCompatible(chip2), false);
+	assert.equal(chip1.isCompatible(chip2), true);
+	assert.equal(rtf1.isCompatible(rtf2), true);
+
+	day11 = new DayEleven([new Chip('H'), new Chip('L')], [new Rtf('H')], [new Rtf('L')]);
+	assert.equal(day11.hash(day11.floor1, day11.floor2, day11.floor3, day11.floor4, 1), '(1)|HM,LM|HG|LG|');
+	assert.equal(day11.complete([],[],[],[]), true);
+	assert.equal(day11.complete([1],[1,2],[3,4],[]), false);
+});
+
+
+
+
+</script>
+</body>
+</html>
