@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/> 
+	<title></title>
+	<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="queue.js"></script>
+
+<script>
+	QUnit.test("Queue Test", function( assert ) {
+		var q = new Queue();
+		q.push('One');
+		q.push('Two');
+		q.push('Three');
+		assert.equal(q.pop(), 'One');
+		assert.equal(q.pop(), 'Two');
+		assert.equal(q.pop(), 'Three');
+
+		q.push('four');
+		q.push('five');
+		q.push('six');
+		assert.equal(q.pop(), 'four');
+		assert.equal(q.pop(), 'five');
+		assert.equal(q.pop(), 'six');
+	});
+</script>
+</body>
+</html>
