@@ -20,29 +20,43 @@ class DayEleven {
 		return !floor1.length && !floor2.length && !floor3.length; 
 	}
 
-	allowed(floor, newPart, removedParts) {
-		let allow = true;
+	allowed(floor, newPart, removedParts = []) {
+		//let allow = true;
+		let unMatchedM = new Set();
+		let gens = new Set();
+
+		if (newPart.part == 'rtf')
+			gens.add(newPart.type);
+		else
+			unMatchedM.add(newPart.type)
+
 		for (let p of floor) {
-			if (p == newPart || removedParts.includes(p)) {
+			if (p == newPart || removedParts.includes(p) || removedParts.includes(newPart)) {
 				continue;
 			}
 
-			allow = allow && p.isCompatible(newPart);
+			if (p.part == 'rtf') {
+				gens.add(p.type);
+				unMatchedM.delete(p.type);
+			}
+			else if (!gens.has(p.type)) {
+				unMatchedM.add(p.type);
+			}
 
 			if (p.isMatch(newPart))
 				return true;
 		}
-
-		return allow;
+		return !(gens.size && unMatchedM.size);
 	}
 
 	findShortest(floors) {
 		let toProcess = [{'floors': floors, 'curr': 0, 'distance': 0}];
+		let combinations = new Map();
 
 		while(toProcess.length) {
 			let next = toProcess.pop();
 
-			this.combinations.set(this.hash(next['floors'][0], next['floors'][1], next['floors'][2], next['floors'][3]), next['distance']);
+			combinations.set(this.hash(next['floors'][0], next['floors'][1], next['floors'][2], next['floors'][3]), next['distance']);
 
 			if (this.complete(...next['floors']))
 				return;
@@ -60,9 +74,17 @@ class DayEleven {
 			let dir = next['distance'] + 1;
 			optionalFloors.forEach(o => {
 				partCombos.forEach(c => {
-					if (c.length === 1 && this.allowed(next['floors'][o], c[0])) {
-						//toProcess.push();
+					if (c.length == 2 || (c.length === 1 && this.allowed(next['floors'][o], c[0]))) {
+						let newFloors = next['floors'].map(f => Array.from(f));
+						newFloors[o] = newFloors[o].push(c).flat();
+						newFloors[next['curr']] = newFloors[next['curr']].filter(x => !c.includes(x));
+
+						let hash = this.hash(...newFloors, o)
+						if (!combinations.has(hash) || combinations.get(hash) > dir) {
+							toProcess.push({'floors': newFloors, 'curr': o, 'distance': dir});
+						}
 					}
+
 				});
 			});
 		}
@@ -84,11 +106,16 @@ class DayEleven {
 
 		//figure out which combos can be removed without frying the floor
 		let usableCombos = [];
-		combos.entries().forEach(c => {
-			usableCombos.push(floor.filter(p => this.allowed(floor, newPart, c)));
-		});
 
-		return usableCombos.flat();
+		for (let c of combos.values()) {
+			if (c.length == 2 && !(c[0].type == c[1].type || c[0].part == c[1].part))
+				continue;
+
+			if (floor.every(p => this.allowed(floor, p, c)))
+				usableCombos.push(c);
+		}
+
+		return usableCombos;
 	}
 
 

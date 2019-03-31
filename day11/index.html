@@ -20,8 +20,6 @@ https://adventofcode.com/2016/day/11
 <script type="text/javascript" src="day11.js"></script>
 <script>
 QUnit.test("Day 11 Part 1 parts", function( assert ) {
-	//var d11 = new DayEleven();
-	//assert.equal(d11.SolutionPartOne('A(1x5)BC'), 7);
 	var rtf1 = new Rtf('test1');
 	var	chip1 = new Chip('test1');
 	assert.equal(rtf1.isCompatible(chip1), true);
@@ -39,6 +37,32 @@ QUnit.test("Day 11 Part 1 parts", function( assert ) {
 	assert.equal(day11.hash(day11.floor1, day11.floor2, day11.floor3, day11.floor4, 1), '(1)|HM,LM|HG|LG|');
 	assert.equal(day11.complete([],[],[],[]), true);
 	assert.equal(day11.complete([1],[1,2],[3,4],[]), false);
+
+	//check splitting checking works
+	var goodFloor = [new Chip('H'), new Rtf('H'), new Rtf('L')];
+	var combinations = day11.splitCombinations(goodFloor);
+	console.table(combinations);
+
+	assert.equal(combinations[0][0].type, 'L');
+	assert.equal(combinations[0][0].part, 'rtf');
+	assert.equal(combinations[1][0].type, 'L');
+	assert.equal(combinations[1][0].part, 'rtf');
+	assert.equal(combinations[1][1].type, 'H');
+	assert.equal(combinations[1][1].part, 'rtf');
+
+	assert.equal(combinations[2][0].type, 'H');
+	assert.equal(combinations[2][0].part, 'rtf');
+	assert.equal(combinations[2][1].type, 'H');
+	assert.equal(combinations[2][1].part, 'chip');
+
+	assert.equal(combinations[3][0].type, 'H');
+	assert.equal(combinations[3][0].part, 'chip');
+
+	//check alloweds
+	assert.equal(day11.allowed(goodFloor, new Chip('A')), false);
+	assert.equal(day11.allowed(goodFloor, new Rtf('A')), true);
+	assert.equal(day11.allowed(goodFloor, new Chip('L')), true);
+
 });
 
 
