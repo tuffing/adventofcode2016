@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/12
+
+<ul>
+	<li>After executing the assembunny code in your puzzle input, what value is left in register a?</li>
+	<li>Set reg C to 1 and repeat</li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day12.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+<script>
+QUnit.test("Day 12 Part 1", function( assert ) {
+	var d12 = new DayTwelve();
+
+	var registers = {'a' : 0, 'b' : 0, 'c' : 0, 'd' : 0, 'e' : 0, 'ins': 0};
+	d12.cpy(registers, 15 , 'c');
+	d12.cpy(registers, 'c' , 'e');
+	assert.equal(registers['c'], 15);
+	assert.equal(registers['e'], 15);
+	assert.equal(registers['a'], 0);
+
+	d12.dec(registers, 'c');
+	d12.dec(registers, 'c');
+	assert.equal(registers['c'], 13);
+
+	d12.inc(registers, 'e');
+	d12.inc(registers, 'e');
+	assert.equal(registers['e'], 17);
+
+	d12.jnz(registers, 'e', 5);
+	d12.jnz(registers, 'e', -2);
+	d12.jnz(registers, 'b', -2);
+	assert.equal(registers['ins'], 10);
+
+	let testProgram = 'cpy 41 a\ninc a\ninc a\ndec a\njnz a 2\ndec a';
+
+	assert.equal(d12.Solution(testProgram), 42);
+
+});
+
+var inputText = 'cpy 1 a\ncpy 1 b\ncpy 26 d\njnz c 2\njnz 1 5\ncpy 7 c\ninc d\ndec c\njnz c -2\ncpy a c\ninc a\ndec b\njnz b -2\n';
+inputText += 'cpy c b\ndec d\njnz d -6\ncpy 14 c\ncpy 14 d\ninc a\ndec d\njnz d -2\ndec c\njnz c -5';
+
+var d12 = new DayTwelve();
+console.log(d12.Solution(inputText));
+console.log(d12.Solution(inputText, 1));
+
+</script>
+</body>
+</html>
