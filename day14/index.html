@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/14
+
+<ul>
+	<li>Given the actual salt in your puzzle input, what index produces your 64th one-time pad key?</li>
+	<li>Given the actual salt in your puzzle input and using 2016 extra MD5 calls of key stretching, what index now produces your 64th one-time pad key?</li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="../spark-md5.min.js"></script>
+<script type="text/javascript" src="day14.js"></script>
+<script>
+QUnit.test("Day 12 Part 1", function( assert ) {
+	var d14 = new DayFourteen();
+
+	let testString =  SparkMD5.hash(`abc18`);
+	assert.equal(d14.FindTriplicate(testString), '8');
+
+	testString =  SparkMD5.hash(`abc816`);
+	assert.equal(d14.FindFiveInRow(testString, 'e')[0][0], 'e');
+
+	assert.equal(d14.Solution('abc'), 22728);
+
+ 	assert.equal(d14.Solution('abc', 22551))
+});
+
+let d14 = new DayFourteen();
+console.log(d14.Solution('cuanljph'));
+console.log(d14.Solution('cuanljph', true));
+
+</script>
+</body>
+</html>
