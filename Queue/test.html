@@ -25,6 +25,13 @@
 		q.push('four');
 		q.push('five');
 		q.push('six');
+
+		let testString = '';
+		for (var i of q) { 
+			testString+= i;
+		}
+		assert.equal(testString, 'fourfivesix');
+
 		assert.equal(q.pop(), 'four');
 		assert.equal(q.pop(), 'five');
 		assert.equal(q.pop(), 'six');

@@ -27,6 +27,23 @@ class Queue {
 		return node.value;	
 	}
 
+	[Symbol.iterator]() {
+		var current = this.first;
+
+		return {
+			next: () => { 
+				let value = null;
+				let done = current == null;
+
+				if (!done) {
+					value = current.value;
+					current = current.next;
+				}
+
+				return { value: value, done: done }}
+		};
+	};
+
 }
 
 class QueueNode {
