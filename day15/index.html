@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/14
+
+<ul>
+	<li>What is the first time you can press the button to get a capsule?</li>
+	<li>Add in the new cog. What is first time you can press the button to get another capsule?</li>
+</ul>
+
+<p>Puzzle is too trivial today, so didn't bother with unit testing.</p>
+
+<div id="qunit"></div>
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+
+<script type="text/javascript" src="day15.js"></script>
+<script>
+QUnit.test("Day 15 naive", function( assert ) {
+	let d15 = new DayFifteen();
+	//console.log(d15.Part1());
+	//console.log(d15.Part2());
+
+	assert.equal(d15.Part1(), 121834);
+
+ 	assert.equal(d15.Part2(), 3208099);
+
+	/*console.log(d15.Power(62985, 7-2,7));
+	console.log(d15.Power(33915, 13-2,13));
+	console.log(d15.Power(146965, 3-2,3));
+	console.log(d15.Power(88179, 5-2,5));
+	console.log(d15.Power(25935, 17-2,17));
+	console.log(d15.Power(23205, 19-2,19));*/
+});
+
+QUnit.test("Day 15 mathed", function( assert ) {
+	let d15 = new DayFifteen();
+
+	let vals = [];
+	vals.push({'m': 7, 's': 1, 'p': 0});
+	vals.push({'m': 13, 's': 2, 'p': 0});
+	vals.push({'m': 3, 's': 3, 'p': 2});
+	vals.push({'m': 5, 's': 4, 'p': 2});
+	vals.push({'m': 17, 's': 5, 'p': 0});
+	vals.push({'m': 19, 's': 6, 'p': 7});
+
+	assert.equal(d15.CRTSol(vals), 121834);
+
+	vals.push({'m': 11, 's': 7, 'p': 0});
+	assert.equal(d15.CRTSol(vals), 3208099);
+
+});
+
+
+</script>
+</body>
+</html>
