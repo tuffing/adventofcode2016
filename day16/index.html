@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/16
+
+<ul>
+	<li>The first disk you have to fill has length 272. Using the initial state in your puzzle input, what is the correct checksum?</li>
+	<li>The second disk you have to fill has length 35651584. Again using the initial state in your puzzle input, what is the correct checksum for this disk?</li>
+</ul>
+
+
+<div id="qunit"></div>
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+
+<script type="text/javascript" src="day16.js"></script>
+<script>
+QUnit.test("Day 16", function( assert ) {
+	let d16 = new DaySixteen();
+
+	assert.equal(d16.CurveString('1'), '100');
+	assert.equal(d16.CurveString('0'), '001');
+	assert.equal(d16.CurveString('11111'), '11111000000');
+	assert.equal(d16.CurveString('111100001010'), '1111000010100101011110000');
+
+
+	assert.equal(d16.Hash('110010110100'), '100');
+	assert.equal(d16.Hash('10000011110010000111'), '01100');
+
+});
+
+let d16 = new DaySixteen();
+
+console.log(d16.SolutionPart1('10001110011110000', 272));
+console.log(d16.SolutionPart2('10001110011110000', 272, 35651584));
+
+</script>
+</body>
+</html>
