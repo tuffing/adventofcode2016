@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/17
+
+<ul>
+	<li>Given your vault's passcode, what is the shortest path (the actual path, not just the length) to reach the vault?</li>
+	<li>What is the length of the longest path that reaches the vault?</li>
+</ul>
+
+
+<div id="qunit"></div>
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="../spark-md5.min.js"></script>
+<script type="text/javascript" src="../Queue/queue.js"></script>
+<script type="text/javascript" src="day17.js"></script>
+<script>
+QUnit.test("Day 17", function( assert ) {
+	let d17 = new DaySeventeen();
+
+	let hash =  SparkMD5.hash(`hijkl`);
+	let openDoors = d17.OpenDoors(hash);
+	assert.equal(openDoors[0], true);
+	assert.equal(openDoors[1], true);
+	assert.equal(openDoors[2], true);
+	assert.equal(openDoors[3], false);
+
+	hash =  SparkMD5.hash(`hijklD`);
+	openDoors = d17.OpenDoors(hash);
+	assert.equal(openDoors[0], true);
+	assert.equal(openDoors[1], false);
+	assert.equal(openDoors[2], true);
+	assert.equal(openDoors[3], true);
+
+	let test = d17.Solution('ihgpwlah');
+	assert.equal(test[0], 'DDRRRD');
+	assert.equal(test[1], 370);
+
+	test = d17.Solution('kglvqrro');
+	assert.equal(test[0], 'DDUDRLRRUDRD');
+	assert.equal(test[1], 492);
+
+	test = d17.Solution('ulqzkmiv');
+	assert.equal(test[0], 'DRURDRUDDLLDLUURRDULRLDUUDDDRR');
+	assert.equal(test[1], 830);
+});
+
+let d17 = new DaySeventeen();
+
+console.log(d17.Solution('yjjvjgan'));
+
+</script>
+</body>
+</html>
