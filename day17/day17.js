@@ -3,10 +3,12 @@ class DaySeventeen {
 	}
 
 	/**
-	* This is essentially just another BFS path find.
+	* This is just another BFS path find.
 	* The exception here is that we don't keep track of visited.
 	* Instead we track the path in the queue, and build up that queue as we go.
 	* We keep exploring a path until either it gets locked in or it makes it to the end... this can get time involved.
+	* I'm making the assumption that the examples and supplied input has been tested that there is a final deadend. 
+	* Otherwise an infinite loop is 100% possible
 	**/
 	Solution(seed) {
 		let dirs = ['U', 'D', 'L', 'R'];
