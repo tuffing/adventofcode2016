@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/18
+
+<ul>
+	<li>Starting with the map in your puzzle input, in a total of 40 rows (including the starting row), how many safe tiles are there?</li>
+	<li>How many safe tiles are there in a total of 400000 rows?</li>
+</ul>
+
+
+<div id="qunit"></div>
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day18.js"></script>
+<script>
+QUnit.test("Day 18", function( assert ) {
+	let d18 = new DayEighteen();
+
+	assert.equal(d18.GenRow('..^^.'), '.^^^^');
+	assert.equal(d18.GenRow('.^^.^.^^^^'), '^^^...^..^');
+	
+	assert.equal(d18.Solution('.^^.^.^^^^', 10), 38);
+
+	assert.equal(d18.Solution('^^^^......^...^..^....^^^.^^^.^.^^^^^^..^...^^...^^^.^^....^..^^^.^.^^...^.^...^^.^^^.^^^^.^^.^..^.^', 40), 1978);
+	assert.equal(d18.Solution('^^^^......^...^..^....^^^.^^^.^.^^^^^^..^...^^...^^^.^^....^..^^^.^.^^...^.^...^^.^^^.^^^^.^^.^..^.^', 400000), 20003246);
+});
+
+let d18 = new DayEighteen();
+
+//console.log(d18.Solution('^^^^......^...^..^....^^^.^^^.^.^^^^^^..^...^^...^^^.^^....^..^^^.^.^^...^.^...^^.^^^.^^^^.^^.^..^.^', 40));
+//console.log(d18.Solution('^^^^......^...^..^....^^^.^^^.^.^^^^^^..^...^^...^^^.^^....^..^^^.^.^^...^.^...^^.^^^.^^^^.^^.^..^.^', 400000));
+
+</script>
+</body>
+</html>
