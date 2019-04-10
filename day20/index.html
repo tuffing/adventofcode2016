@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/20
+
+<ul>
+	<li>Given the list of blocked IPs you retrieved from the firewall (your puzzle input), what is the lowest-valued IP that is not blocked?</li>
+	<li>How many in the blacklist?</li>
+</ul>
+
+
+<div id="qunit"></div>
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day20.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+
+<script>
+QUnit.test("Day 19 part 1", function( assert ) {
+	assert.equal(DayTwenty.solution("5-8\n0-2\n4-7", 10)[0], 3);
+	assert.equal(DayTwenty.solution("5-8\n0-2\n3-7", 10)[0], 9);
+	assert.equal(DayTwenty.solution("6-8\n0-2\n3-4", 10)[0], 5);
+});
+
+QUnit.test("Day 19 part 2", function( assert ) {
+	assert.equal(DayTwenty.solution("5-8\n0-2\n4-7", 10)[1], 3);
+	assert.equal(DayTwenty.solution("5-8\n0-2\n4-7\n10-14", 15)[1], 3);
+ 	assert.equal(DayTwenty.solution("5-7\n0-2\n4-7\n10-14", 15)[1], 4);
+	assert.equal(DayTwenty.solution("6-8\n0-2\n3-3", 10)[1], 4);
+	assert.equal(DayTwenty.solution("6-8\n0-2\n3-3\n9-10", 10)[1], 2);
+});
+
+console.log(DayTwenty.solution(solInput, 4294967295));
+</script>
+</body>
+</html>
