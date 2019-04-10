@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/19
+
+<ul>
+	<li>With the number of Elves given in your puzzle input, which Elf gets all the presents?</li>
+	<li>Repeat but now instead of the elf to the left, it's the opposite elf</li>
+</ul>
+
+
+<div id="qunit"></div>
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day19.js"></script>
+<script>
+QUnit.test("Day 19 part 1", function( assert ) {
+	assert.equal(DayNineteen.part1(5), 3);
+});
+
+QUnit.test("Day 19 part 2", function( assert ) {
+	assert.equal(DayNineteen.part2(69), 57);
+	assert.equal(DayNineteen.part2(81), 81);
+	assert.equal(DayNineteen.part2(75), 69);
+	assert.equal(DayNineteen.part2(52), 25);
+});
+
+console.log(DayNineteen.part1(3014387));
+console.log(DayNineteen.part2(3014387));
+</script>
+</body>
+</html>
