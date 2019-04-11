@@ -134,6 +134,11 @@ class DayTwentyOne {
 	}
 
 	solutionPart2(input, string) {
+		//to reverse we just run out commands in reverse on the string
+		//and flip the command (left to right, or in swapping commands, just switch the args)
+		//.. all but the roate based on letter x command. There isn't a straight forward
+		//method for this. ...current solution for that is hacky.
+
 		let lines = input.split('\n');
 		let coms = lines.map(x => this.parseLine(x)).reverse();
 
