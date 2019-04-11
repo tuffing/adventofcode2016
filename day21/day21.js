@@ -41,11 +41,10 @@ class DayTwentyOne {
 
 	// swap position X with position Y means that the letters at indexes X and Y (counting from 0) should be swapped.
 	swapposition(string, x,y) {
-		let letters = string.split('');
-		let letterY = letters[y];
-		letters[y] = letters[x];
-		letters[x] = letterY;
-		return letters.join('');
+		//javascript strings are immutable, which prevents us swapping out letter at index a with b
+		//we'd have to convert to array first or do some messy string stuff, 
+		//so the quickest way is just to reuse swapletter 
+		return this.swapletter(string, string[x], string[y]);
 	}
 
 	//swap letter X with letter Y means that the letters X and Y should be swapped (regardless of where they appear in the string).
@@ -70,19 +69,15 @@ class DayTwentyOne {
 	// Once the index is determined, rotate the string to the right one time,
 	// plus a number of times equal to that index, plus one additional time if the index was at least 4.
 	rotatebased(string, x) {
-		let letters = string.split('');
-		let index = letters.indexOf(x);
-		if (index >= 4)
-			index++;
-		index++;//the extra rotate
+		//let letters = string.split('');
+		let index = string.indexOf(x);
 
-		while (index) {
-			let l = letters.pop();
-			letters.unshift(l);
-			index--;
+		string = this.rotateright(string, index+1);
+		if (index >= 4) {
+			string = this.rotateright(string, 1);
 		}
 
-		return letters.join('');
+		return string;
 	}
 
 	reverserotatebased(string, x) {
