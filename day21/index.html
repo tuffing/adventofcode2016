@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/20
+
+<ul>
+	<li>Given the list of scrambling operations in your puzzle input, what is the result of scrambling abcdefgh?</li>
+	<li>What is the un-scrambled version of the scrambled password fbgdceah?</li>
+</ul>
+
+
+<div id="qunit"></div>
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day21.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+
+<script>
+QUnit.test("Day 21 parsing", function( assert ) {
+	let d21 = new DayTwentyOne();
+	let testLine = d21.parseLine('swap position 4 with position 0');
+	assert.equal(testLine.command, 'swapposition');
+	assert.equal(testLine.args[0], 4);
+	assert.equal(testLine.args[1], 0);
+
+	testLine = d21.parseLine('swap letter d with letter b');
+	assert.equal(testLine.command, 'swapletter');
+	assert.equal(testLine.args[0], 'd');
+	assert.equal(testLine.args[1], 'b');
+
+	testLine = d21.parseLine('reverse positions 0 through 4');
+	assert.equal(testLine.command, 'reversepositions');
+	assert.equal(testLine.args[0], 0);
+	assert.equal(testLine.args[1], 4);
+
+	testLine = d21.parseLine('rotate left 1 step');
+	assert.equal(testLine.command, 'rotateleft');
+	assert.equal(testLine.args[0], 1);
+
+	testLine = d21.parseLine('rotate right 5 step');
+	assert.equal(testLine.command, 'rotateright');
+	assert.equal(testLine.args[0], 5);
+
+	testLine = d21.parseLine('move position 1 to position 4');
+	assert.equal(testLine.command, 'moveposition');
+	assert.equal(testLine.args[0], 1);
+	assert.equal(testLine.args[1], 4);
+
+	testLine = d21.parseLine('rotate based on position of letter b');
+	assert.equal(testLine.command, 'rotatebased');
+	assert.equal(testLine.args[0], 'b');
+});
+
+QUnit.test("Day 21 functions", function( assert ) {
+	let d21 = new DayTwentyOne();
+	assert.equal(d21.swapposition('abcde', 4,0), 'ebcda');
+	assert.equal(d21.swapletter('ebcda', 'd','b'), 'edcba');
+	assert.equal(d21.rotateleft('abcde', 1), 'bcdea');
+	assert.equal(d21.rotateleft('abcde', 2), 'cdeab');
+	assert.equal(d21.rotateright('cdeab', 2), 'abcde');
+	assert.equal(d21.rotateright('cdeab', 3), 'eabcd');
+	assert.equal(d21.rotatebased('ecabd', 'd'), 'decab');
+	assert.equal(d21.rotatebased('abdec', 'b'), 'ecabd');
+	assert.equal(d21.reversepositions('edcba', 0, 4), 'abcde');
+	assert.equal(d21.reversepositions('abcde', 1, 3), 'adcbe');
+	assert.equal(d21.moveposition('bcdea', 1, 4), 'bdeac');
+	assert.equal(d21.moveposition('bdeac', 3, 0), 'abdec');
+
+	let a = 'abcdefgh';
+	let b = d21.rotatebased(a, 'a');
+	b = d21.reverserotatebased(b, 'a');
+	assert.equal(b, a);
+
+	b = d21.rotatebased(a, 'b');
+	b = d21.reverserotatebased(b, 'b');
+	assert.equal(b, a);
+
+	b = d21.rotatebased(a, 'c');
+	b = d21.reverserotatebased(b, 'c');
+	assert.equal(b, a);
+
+	b = d21.rotatebased(a, 'd');
+	b = d21.reverserotatebased(b, 'd');
+	assert.equal(b, a);
+
+	b = d21.rotatebased(a, 'e');
+	b = d21.reverserotatebased(b, 'e');
+	assert.equal(b, a);
+
+	b = d21.rotatebased(a, 'f');
+	b = d21.reverserotatebased(b, 'f');
+	assert.equal(b, a);
+
+	b = d21.rotatebased(a, 'g');
+	b = d21.reverserotatebased(b, 'g');
+	assert.equal(b, a);
+
+	b = d21.rotatebased(a, 'h');
+	b = d21.reverserotatebased(b, 'h');
+	assert.equal(b, a);
+});
+
+QUnit.test("Day 21 Part1/2 test", function( assert ) {
+	let d21 = new DayTwentyOne();
+	//assert.equal(d21.swapposition('abcde', 4,0), 'ebcda');
+
+    let test = `swap position 4 with position 0.
+swap letter d with letter b
+reverse positions 0 through 4
+rotate left 1 step
+move position 1 to position 4
+move position 3 to position 0
+rotate based on position of letter b
+rotate based on position of letter d`;
+
+	assert.equal(d21.solution(test, 'abcde'), 'decab');
+	assert.equal(d21.solutionPart2(solInput, 'gbhafcde'), 'abcdefgh');
+});
+
+let d21 = new DayTwentyOne();
+console.log(d21.solution(solInput, 'abcdefgh'));
+console.log(d21.solutionPart2(solInput, 'fbgdceah'));
+
+</script>
+</body>
+</html>
