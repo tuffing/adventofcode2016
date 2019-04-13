@@ -31,11 +31,19 @@ class DayTwentyTwo {
 	}
 
 	part2(puzzle, startX, startY, gStartX, gStartY) {
+		//Experimented using A* and Dijkstra but ultimately found
+		//a plain old bfs to be the fastest by a wide margin.
+		//a substantial speed improvement can be made by not letting the blank space
+		//get too far from the target data once they're together. 
+		//This optimisation only works as the nodes that can't be accessed in side our puzzle form a straight line.
+		//BUt it's also that reason we have to wait until the blank and target join up before we can use it.
+		
 		let visited = new Map();
-		//var queue = new PriorityQueue({ comparator: function(a, b) { return a.score - b.score; }});
 		var queue = new Queue();
-		queue.push({x: startX, y: startY, gX: gStartX, gY: gStartY, dist: 0});
+		queue.push({x: startX, y: startY, gX: gStartX, gY: gStartY, 
+			dist: 0, score:  Math.abs(Math.abs(startX) - Math.abs(gStartX) + Math.abs(startY) - Math.abs(gStartY)) });
 
+		let bestScore = -1;
 		while (queue.first != null) {
 			let now = queue.pop();
 			let coords = [[now.x-1, now.y], [now.x+1, now.y], [now.x,now.y-1], [now.x,now.y+1]];
@@ -50,6 +58,7 @@ class DayTwentyTwo {
 				if (c[0] === newGX && c[1] === newGY) {
 					newGX = now.x;
 					newGY = now.y;
+					bestScore = 1
 				}
 
 				if (newGX === 0 && newGY === 0)
@@ -59,8 +68,9 @@ class DayTwentyTwo {
 				let tests= visited.get(hash);
 				if (!visited.has(hash)) {
 					visited.set(hash, now.dist+1);
-					//let score = Math.abs((Math.abs(c[0]) - Math.abs(newGX)) + (Math.abs(c[1]) - Math.abs(newGY)));
-					queue.push({x: c[0], y: c[1], gX: newGX, gY: newGY, dist: now.dist + 1});
+					let score = Math.abs(Math.abs(c[0]) - Math.abs(newGX) + Math.abs(c[1]) - Math.abs(newGY));
+					if (bestScore <= 0 || score < bestScore + 2)
+						queue.push({x: c[0], y: c[1], gX: newGX, gY: newGY, dist: now.dist + 1, score: score});
 				}
 			}
 			//console.log('a');

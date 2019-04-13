@@ -35,6 +35,10 @@ QUnit.test("Day 22 part 2", function( assert ) {
 	assert.equal(test.startY, 1);
 	test.puzzle.set(`0,2`, '#');
 	assert.equal(d22.part2(test.puzzle, 1,1,2,0), 7);
+
+
+	let puzzleMap = d22.convertToPuzzle(solInput, 32,0);
+	assert.equal(d22.part2(puzzleMap.puzzle, puzzleMap.startX,puzzleMap.startY,32,0), 225);
 });
 
 function printPuzzle(puzzle, maxX, maxY) {
@@ -53,8 +57,8 @@ function printPuzzle(puzzle, maxX, maxY) {
 let d22 = new DayTwentyTwo();
 console.log(d22.part1(solInput));
 
-let puzzleMap = d22.convertToPuzzle(solInput, 32,0);
-console.log(d22.part2(puzzleMap.puzzle, puzzleMap.startX,puzzleMap.startY,32,0));
+//let puzzleMap = d22.convertToPuzzle(solInput, 32,0);
+//console.log(d22.part2(puzzleMap.puzzle, puzzleMap.startX,puzzleMap.startY,32,0));
 
 </script>
 </body>
