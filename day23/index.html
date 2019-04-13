@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/23
+
+<ul>
+	<li>What value should be sent to the safe? using starting number 7</li>
+	<li>Same but start with 12 instead (aka reverse engineer the program)</li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day23.js"></script>
+<script>
+QUnit.test("Day 13 Part 1", function( assert ) {
+	var d23 = new DayTwentyThree();
+
+	var registers = {'a' : 0, 'b' : 0, 'c' : 0, 'd' : 0, 'e' : 0, 'ins': 0, 'instructions': [['cpy', '26', 'd'],['jnz', 'a', '2']]};
+	d23.cpy(registers, 15 , 'c');
+	d23.cpy(registers, 'c' , 'e');
+	assert.equal(registers['c'], 15);
+	assert.equal(registers['e'], 15);
+	assert.equal(registers['a'], 0);
+
+	d23.dec(registers, 'c');
+	d23.dec(registers, 'c');
+	assert.equal(registers['c'], 13);
+
+	d23.inc(registers, 'e');
+	d23.inc(registers, 'e');
+	assert.equal(registers['e'], 17);
+
+	d23.jnz(registers, 'e', 5);
+	d23.jnz(registers, 'e', -2);
+	d23.jnz(registers, 'b', -2);
+	assert.equal(registers['ins'], 10);
+
+	registers.a = 1;
+	registers.ins = 0;
+	d23.tgl(registers, 'a')
+	assert.equal(registers.instructions[1][0], 'cpy');
+
+	let testProgram = 'cpy 41 a\ninc a\ninc a\ndec a\njnz a 2\ndec a';
+	assert.equal(d23.Solution(testProgram), 42);
+
+	testProgram = 'cpy 2 a\ntgl a\ntgl a\ntgl a\ncpy 1 a\ndec a\ndec a';
+	assert.equal(d23.Solution(testProgram), 3);
+});
+
+var inputText = 'cpy a b\ndec b\ncpy a d\ncpy 0 a\ncpy b c\ninc a\ndec c\njnz c -2\ndec d\njnz d -5\ndec b\ncpy b c\ncpy c d\ndec d\ninc c\njnz d -2\ntgl c\ncpy -16 c\njnz 1 c\ncpy 73 c\njnz 80 d\ninc a\ninc d\njnz d -2\ninc c\njnz c -5';
+
+var d23 = new DayTwentyThree();
+console.log(d23.Solution2(7,73, 80));
+console.log(d23.Solution2(12,73, 80));
+
+</script>
+</body>
+</html>
