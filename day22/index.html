@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/22
+
+<ul>
+	<li></li>
+	<li></li>
+</ul>
+
+
+<div id="qunit"></div>
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="day22.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+<script type="text/javascript" src="testinput.txt"></script>
+
+<script>
+QUnit.test("Day 22 parsing", function( assert ) {
+	let d22 = new DayTwentyTwo();
+	assert.equal(d22.part1(testInput), 4);
+});
+
+
+	let d22 = new DayTwentyTwo();
+	console.log(d22.part1(solInput));
+
+
+
+
+</script>
+</body>
+</html>
