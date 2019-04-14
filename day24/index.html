@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solution Testing</title>
+	<meta charset="UTF-8"> 
+	  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+https://adventofcode.com/2016/day/24
+
+<ul>
+	<li></li>
+	<li></li>
+</ul>
+
+
+<div id="qunit"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+<script type="text/javascript" src="../Queue/queue.js"></script>
+<script type="text/javascript" src="input.txt"></script>
+<script type="text/javascript" src="testinput.txt"></script>
+<script type="text/javascript" src="day24.js"></script>
+<script>
+QUnit.test("Day 24 Part 1", function( assert ) {
+	var d24 = new DayTwentyFour();
+	assert.equal(d24.Solution(testInput, 1, 1, 5)[0], 14);
+	let sol = d24.Solution(solInput, 27, 29, 8);
+	assert.equal(sol[0], 462);
+	assert.equal(sol[1], 676);
+});
+
+</script>
+</body>
+</html>
