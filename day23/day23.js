@@ -5,17 +5,18 @@ class DayTwentyThree {
 	Solution(inputText, regc = 0, rega = 0, regb = 0) {
 		let lines = inputText.split('\n');
 
-		let registers = {'a' : rega, 'b' : regb, 'c' : regc, 'd' : 0, 'e' : 0, 'ins': 0, instructions: []};
+		let registers = {'a' : rega, 'b' : regb, 'c' : regc, 'd' : 0, 'e' : 0, 'ins': 0, instructions: [], output: ''};
 		let instructions = registers.instructions;
 
 		lines.forEach(l => {
 			instructions.push(l.split(' '));
 		});
 
-		while (registers['ins'] >= 0 && registers['ins'] < instructions.length) {
+		while (registers['ins'] >= 0 && registers['ins'] < instructions.length && registers.output.length < 9) {
 			this[instructions[registers['ins']][0]](registers, ...(instructions[registers['ins']].slice(1)));
 		}
-		return registers['a'];
+
+		return registers;
 	}
 
 	Solution2(rega, multiA, multiB) {
@@ -27,6 +28,15 @@ class DayTwentyThree {
 	 	}
 
 	 	return x + (multiA * multiB);
+	}
+
+	day25Solution(inputText) {
+		for (let i = 1; i < 1000; i++) {
+			let poss = ['101010101', '010101010'];
+			let next = this.Solution(inputText, 0, i).output;
+			if (poss.includes(next))
+				return i;
+		}
 	}
 
 	/*
@@ -120,4 +130,16 @@ class DayTwentyThree {
 
 		registers['instructions'][ins][0] = newCom;
 	}
+
+
+	//out x transmits x (either an integer or the value of a register) as the next value for the clock signal.
+	out (registers, x) {
+		if (isNaN(+x)) {
+			x = registers[x];
+		}
+
+		registers['output'] += x;
+		registers['ins']++;
+	}
+
 }

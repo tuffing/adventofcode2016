@@ -48,10 +48,10 @@ QUnit.test("Day 13 Part 1", function( assert ) {
 	assert.equal(registers.instructions[1][0], 'cpy');
 
 	let testProgram = 'cpy 41 a\ninc a\ninc a\ndec a\njnz a 2\ndec a';
-	assert.equal(d23.Solution(testProgram), 42);
+	assert.equal(d23.Solution(testProgram).a, 42);
 
 	testProgram = 'cpy 2 a\ntgl a\ntgl a\ntgl a\ncpy 1 a\ndec a\ndec a';
-	assert.equal(d23.Solution(testProgram), 3);
+	assert.equal(d23.Solution(testProgram).a, 3);
 });
 
 var inputText = 'cpy a b\ndec b\ncpy a d\ncpy 0 a\ncpy b c\ninc a\ndec c\njnz c -2\ndec d\njnz d -5\ndec b\ncpy b c\ncpy c d\ndec d\ninc c\njnz d -2\ntgl c\ncpy -16 c\njnz 1 c\ncpy 73 c\njnz 80 d\ninc a\ninc d\njnz d -2\ninc c\njnz c -5';
@@ -59,6 +59,11 @@ var inputText = 'cpy a b\ndec b\ncpy a d\ncpy 0 a\ncpy b c\ninc a\ndec c\njnz c 
 var d23 = new DayTwentyThree();
 console.log(d23.Solution2(7,73, 80));
 console.log(d23.Solution2(12,73, 80));
+
+
+var input25 = 'cpy a d\ncpy 7 c\ncpy 365 b\ninc d\ndec b\njnz b -2\ndec c\njnz c -5\ncpy d a\njnz 0 0\ncpy a b\ncpy 0 a\ncpy 2 c\njnz b 2\njnz 1 6\ndec b\ndec c\njnz c -4\ninc a\njnz 1 -7\ncpy 2 b\njnz c 2\njnz 1 4\ndec b\ndec c\njnz 1 -4\njnz 0 0\nout b\njnz a -19\njnz 1 -21';
+
+console.log(d23.day25Solution(input25));
 
 </script>
 </body>
